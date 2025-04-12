@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/authContext';
-import './Login.css';
+import './login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -23,7 +23,7 @@ const Login = () => {
       } else {
         setError('Please enter both email and password');
       }
-    } catch (err) {
+    } catch {
       setError('Login failed. Please try again.');
     }
   };
