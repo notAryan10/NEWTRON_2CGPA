@@ -5,10 +5,10 @@ import ImageGenerator from "./components/imageGenerator.jsx";
 import Home from "./components/Home.jsx";
 import "./App.css";
 import GeminiPrompt from "./components/geminiPrompt.jsx";
-import Login from "./components/Login.jsx";
-import Register from "./components/Register.jsx";
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
-import { AuthProvider } from "./context/AuthContext.jsx";
+import Login from "./components/login.jsx";
+import Register from "./components/register.jsx";
+import ProtectedRoute from "./components/protectedRoute.jsx";
+import { AuthProvider } from "./context/authContext.jsx";
 
 const App = () => {
   return (
