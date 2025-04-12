@@ -39,10 +39,35 @@ const GeminiPrompt = () => {
         </button>
         {geminiOutput && (
           <div className="mt-6">
-            <h3 className="text-lg font-semibold mb-2 text-gray-800">Response:</h3>
-            <pre className="bg-gray-50 p-4 rounded-lg overflow-auto max-h-96 text-gray-700">
-              {geminiOutput}
-            </pre>
+            <h3 className="text-lg font-semibold mb-4 text-gray-800">Response:</h3>
+            <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg overflow-auto max-h-[80vh] text-gray-700 dark:text-gray-300">
+              <div className="prose dark:prose-invert max-w-none">
+                {geminiOutput.split('\n').map((line, index) => {
+                  if (line.startsWith('* **')) {
+                    return (
+                      <div key={index} className="ml-4 mb-2">
+                        <span className="font-semibold text-purple-600 dark:text-purple-400">
+                          {line.replace('* **', '').replace(':**', '')}
+                        </span>
+                        {line.split(':**')[1]}
+                      </div>
+                    );
+                  } else if (line.startsWith('* ')) {
+                    return (
+                      <div key={index} className="ml-4 mb-2">
+                        {line.replace('* ', '')}
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <p key={index} className="mb-4 leading-relaxed">
+                        {line}
+                      </p>
+                    );
+                  }
+                })}
+              </div>
+            </div>
           </div>
         )}
       </div>

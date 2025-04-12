@@ -9,9 +9,9 @@ import GeminiPrompt from "./components/geminiPrompt.jsx";
 const App = () => {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col bg-gradient-to-br from-white to-purple-100 dark:from-black dark:to-purple-900 transition-colors duration-300">
+      <div>
         <Navbar />
-        <main className="flex-1 pt-8">
+        <main>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/image-generator" element={<ImageGenerator />} />
