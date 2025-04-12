@@ -124,6 +124,25 @@
   }
 }
 
+/* Glowing border animation */
+@keyframes glowingBorder {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2),
+                0 0 10px rgba(255, 255, 255, 0.2),
+                0 0 15px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4),
+                0 0 20px rgba(255, 255, 255, 0.4),
+                0 0 30px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2),
+                0 0 10px rgba(255, 255, 255, 0.2),
+                0 0 15px rgba(255, 255, 255, 0.2);
+  }
+}
+
 /* Apply animations to navbar elements */
 .navbar-animated {
   animation: fadeIn 0.8s ease-out forwards;
@@ -195,10 +214,10 @@
   opacity: 0;
 }
 
-/* Navbar border animation */
-.navbar-border-animated {
+/* Navbar with glowing border */
+.navbar-glowing {
   position: relative;
-  animation: borderGlow 3s infinite ease-in-out;
+  animation: glowingBorder 3s infinite ease-in-out;
 }
 
 /* Navbar with gradient border */
