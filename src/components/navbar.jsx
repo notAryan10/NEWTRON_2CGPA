@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/authContext';
+import { Link } from 'react-router-dom';
 import './ToggleButton.css';
 import './NavbarAnimations.css';
 import './ModernButton.css';
 
 function Navbar() {
   const [darkMode, setDarkMode] = useState(false);
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Check if user has a preference saved
@@ -35,11 +32,6 @@ function Navbar() {
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
-  };
-
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
   };
 
   return (
@@ -76,21 +68,6 @@ function Navbar() {
               <li><Link to="/image-generator" className="text-gray-300 hover:text-white transition-colors">Image Generator</Link></li>
               <li><Link to="/chatbot" className="text-gray-300 hover:text-white transition-colors">Chatbot</Link></li>
             </ul>
-            
-            <div className="flex items-center space-x-4">
-              {user ? (
-                <>
-                  <span className="text-gray-300">{user.email}</span>
-                  <button onClick={handleLogout} className="Btn">
-                    Logout
-                  </button>
-                </>
-              ) : (
-                <Link to="/login" className="Btn">
-                  Login
-                </Link>
-              )}
-            </div>
           </div>
         </nav>
       </div>
