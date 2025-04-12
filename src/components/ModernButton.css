@@ -15,6 +15,7 @@
   position: relative;
   overflow: hidden;
   transition-duration: .3s;
+  border-radius: 10px;
 }
 
 /* Dark mode styles for login button */

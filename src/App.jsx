@@ -5,21 +5,50 @@ import ImageGenerator from "./components/imageGenerator.jsx";
 import Home from "./components/Home.jsx";
 import "./App.css";
 import GeminiPrompt from "./components/geminiPrompt.jsx";
+import Login from "./components/Login.jsx";
+import Register from "./components/Register.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import { AuthProvider } from "./context/AuthContext.jsx";
 
 const App = () => {
   return (
-    <Router>
-      <div className="min-h-screen flex flex-col bg-gradient-to-br from-white to-purple-100 dark:from-black dark:to-purple-900 transition-colors duration-300">
-        <Navbar />
-        <main className="flex-1 pt-8">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/image-generator" element={<ImageGenerator />} />
-            <Route path="/chatbot" element={<GeminiPrompt />} />
-          </Routes>
-        </main>
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div className="min-h-screen flex flex-col bg-gradient-to-br from-white to-purple-100 dark:from-black dark:to-purple-900 transition-colors duration-300">
+          <Navbar />
+          <main className="flex-1 pt-8">
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route
+                path="/"
+                element={
+                  <ProtectedRoute>
+                    <Home />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/image-generator"
+                element={
+                  <ProtectedRoute>
+                    <ImageGenerator />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/chatbot"
+                element={
+                  <ProtectedRoute>
+                    <GeminiPrompt />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </main>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 
