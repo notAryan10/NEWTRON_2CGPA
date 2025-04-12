@@ -6,15 +6,31 @@ const ImageGenerator = () => {
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [retryCount, setRetryCount] = useState(0);
 
   const handleGenerate = async () => {
     try {
       setLoading(true);
       setError("");
+      setRetryCount(0);
       const img = await generateImage(prompt);
       setImage(img);
     } catch (err) {
-      setError("Image generation failed.");
+      if (err.message.includes("API key")) {
+        setError(
+          <div className="space-y-2">
+            <p className="text-red-600 dark:text-red-400">{err.message}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Please check your .env file and ensure you have a valid Stability AI API key.
+              You can get one from <a href="https://stability.ai/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">stability.ai</a>
+            </p>
+          </div>
+        );
+      } else if (err.message.includes("Rate limit")) {
+        setError("Rate limit exceeded. Please wait a moment before trying again.");
+      } else {
+        setError(err.message || "Image generation failed.");
+      }
     } finally {
       setLoading(false);
     }
@@ -22,7 +38,6 @@ const ImageGenerator = () => {
 
   return (
     <div className="h-full flex flex-col md:flex-row p-6 pt-12 gap-6">
-      {/* Input Section */}
       <div className="md:w-1/3 flex flex-col gap-6">
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
           <h1 className="text-3xl font-bold mb-2 text-gray-800 dark:text-white">AI Image Generator</h1>
@@ -54,7 +69,7 @@ const ImageGenerator = () => {
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
-                  Generating...
+                  {retryCount > 0 ? `Retrying (${retryCount})...` : "Generating..."}
                 </>
               ) : (
                 "Generate Image"
@@ -64,19 +79,24 @@ const ImageGenerator = () => {
 
           {error && (
             <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/30 rounded-lg">
-              <p className="text-red-600 dark:text-red-400">{error}</p>
+              {typeof error === 'string' ? (
+                <p className="text-red-600 dark:text-red-400">{error}</p>
+              ) : (
+                error
+              )}
             </div>
           )}
         </div>
       </div>
 
-      {/* Image Display Section */}
       <div className="md:w-2/3 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
         <div className="h-full flex items-center justify-center bg-gray-50 dark:bg-gray-900 rounded-lg">
           {loading ? (
             <div className="text-center">
               <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-purple-500 border-t-transparent"></div>
-              <p className="mt-4 text-gray-600 dark:text-gray-400">Creating your masterpiece...</p>
+              <p className="mt-4 text-gray-600 dark:text-gray-400">
+                {retryCount > 0 ? `Retrying (${retryCount})...` : "Creating your masterpiece..."}
+              </p>
             </div>
           ) : image ? (
             <img

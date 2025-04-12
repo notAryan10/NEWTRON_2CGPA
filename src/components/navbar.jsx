@@ -11,25 +11,21 @@ function Navbar() {
   const [enableHover, setEnableHover] = useState(true);
 
   useEffect(() => {
-    // Check if user has a preference saved
     const savedDarkMode = localStorage.getItem('darkMode');
     if (savedDarkMode !== null) {
       setDarkMode(JSON.parse(savedDarkMode));
     } else {
-      // Check system preference
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       setDarkMode(prefersDark);
     }
   }, []);
 
   useEffect(() => {
-    // Apply dark mode to document
     if (darkMode) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-    // Save preference
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
   }, [darkMode]);
 

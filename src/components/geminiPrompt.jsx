@@ -7,7 +7,7 @@ const GeminiPrompt = () => {
   const [displayedOutput, setDisplayedOutput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [prompt, setPrompt] = useState("");
-  const [highlightColor, setHighlightColor] = useState("#FFEB3B"); // Default yellow color
+  const [highlightColor, setHighlightColor] = useState("#FFEB3B");
 
   const isLightColor = (color) => {
     const hex = color.replace('#', '');
@@ -37,7 +37,6 @@ const GeminiPrompt = () => {
             setDisplayedOutput(currentText);
             currentCharIndex++;
           } else {
-            // Move to next line
             currentText += '\n';
             setDisplayedOutput(currentText);
             currentLineIndex++;
@@ -47,7 +46,7 @@ const GeminiPrompt = () => {
           setIsTyping(false);
           clearInterval(typewriterEffect);
         }
-      }, 10); // Increased speed (10ms per character)
+      }, 10);
 
       return () => clearInterval(typewriterEffect);
     }

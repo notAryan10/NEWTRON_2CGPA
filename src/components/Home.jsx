@@ -7,7 +7,6 @@ const Home = () => {
   return (
     <div className="container mx-auto px-6 py-8 min-h-screen flex items-center justify-center">
       <div className="flex flex-col lg:flex-row gap-8 max-w-7xl w-full justify-center items-stretch">
-        {/* ChatBot Card */}
         <div className="w-full lg:w-1/3 min-h-[400px] flex flex-col bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:transform hover:scale-105">
           <div className="relative h-48">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600"></div>
@@ -42,7 +41,6 @@ const Home = () => {
           </div>
         </div>
 
-        {/* AI Image Generator Card */}
         <div className="w-full lg:w-1/3 min-h-[400px] flex flex-col bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:transform hover:scale-105">
           <div className="relative h-48">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600"></div>
@@ -77,7 +75,6 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Code Writer Card */}
         <div className="w-full lg:w-1/3 min-h-[400px] flex flex-col bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:transform hover:scale-105">
           <div className="relative h-48">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600"></div>
