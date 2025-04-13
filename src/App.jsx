@@ -9,6 +9,7 @@ import Aurora from "./components/Aurora.jsx";
 import TextPressure from './components/TextPressure';
 import SpotlightCard from './components/SpotlightCard';
 import ExploreButton from './components/ExploreButton';
+import AboutUs from './components/AboutUs';
 
 const MainContent = () => {
   const location = useLocation();
@@ -32,8 +33,10 @@ const MainContent = () => {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/image-generator" element={<ImageGenerator />} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/chatbot" element={<GeminiPrompt />} />
+          <Route path="/image-generator" element={<ImageGenerator />} />
+          <Route path="/code-writer" element={<GeminiPrompt />} />
         </Routes>
       </main>
     </div>

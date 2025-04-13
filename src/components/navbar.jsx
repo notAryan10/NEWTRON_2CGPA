@@ -70,8 +70,7 @@ function Navbar() {
             
             <ul className="flex space-x-6">
               <li><Link to="/" className="text-white hover:text-white/80 transition-colors">Home</Link></li>
-              <li><Link to="/image-generator" className="text-white hover:text-white/80 transition-colors">Image Generator</Link></li>
-              <li><Link to="/chatbot" className="text-white hover:text-white/80 transition-colors">Chatbot</Link></li>
+              <li><Link to="/about" className="text-white hover:text-white/80 transition-colors">About Us</Link></li>
             </ul>
           </div>
         </nav>
