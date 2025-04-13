@@ -10,6 +10,7 @@ import TextPressure from './components/TextPressure';
 import SpotlightCard from './components/SpotlightCard';
 import ExploreButton from './components/ExploreButton';
 import Freeminded from './components/Freeminded';
+import QuickAccess from './components/QuickAccess';
 
 const MainContent = () => {
   const location = useLocation();
@@ -36,6 +37,7 @@ const MainContent = () => {
           <Route path="/image-generator" element={<ImageGenerator />} />
           <Route path="/chatbot" element={<GeminiPrompt />} />
           <Route path="/freeminded" element={<Freeminded />} />
+          <Route path="/quick-access" element={<QuickAccess />} />
         </Routes>
       </main>
     </div>
